@@ -19,7 +19,7 @@ const rng = require('@semantic-release/release-notes-generator')
   core.setOutput('version', result.nextRelease.version)
   core.setOutput('notes', result.nextRelease.notes)
   core.setOutput('type', result.nextRelease.type)
-  core.setOutput('tag', result.nextRelease.tag)
+  core.setOutput('tag', result.nextRelease.gitTag)
   core.setOutput('channel', result.nextRelease.channel)
   core.setOutput('name', result.nextRelease.name)
 
