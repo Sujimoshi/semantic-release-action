@@ -4,7 +4,7 @@ const sr = require('semantic-release')
 const ca = require('@semantic-release/commit-analyzer')
 const rng = require('@semantic-release/release-notes-generator')
 
-(async function() {
+;(async function() {
   const releaseBranches = core.getInput('release-branches').split(',');
   const prereleaseBranches = core.getInput('prerelease-branches').split(',').map(name => ({ name, prerelease: true }));
 
