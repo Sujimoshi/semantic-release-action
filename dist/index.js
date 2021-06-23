@@ -106383,7 +106383,7 @@ const sr = __nccwpck_require__(79017)
 const ca = __nccwpck_require__(60156)
 const rng = __nccwpck_require__(4338)
 
-(async function() {
+;(async function() {
   const releaseBranches = core.getInput('release-branches').split(',');
   const prereleaseBranches = core.getInput('prerelease-branches').split(',').map(name => ({ name, prerelease: true }));
 
