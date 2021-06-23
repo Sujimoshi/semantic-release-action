@@ -1,0 +1,19 @@
+name: 'Semantic Release'
+description: 'Evaluate next release version'
+inputs:
+  release-branches:  # id of input
+    description: 'Set of release branches separated by comma'
+    required: false
+    default: 'master,next,next-major'
+  prerelease-branches:  # id of input
+    description: 'Set of prerelease branches separated by comma'
+    required: false
+    default: 'alpha,beta'
+outputs:
+  version:
+    description: "Next release version"
+  changelog:
+    description: "Release changelog"
+runs:
+  using: 'node12'
+  main: 'index.js'
