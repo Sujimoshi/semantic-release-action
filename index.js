@@ -12,8 +12,6 @@ const rng = require('@semantic-release/release-notes-generator')
     branches: [...releaseBranches, ...prereleaseBranches],
     plugins: ['@semantic-release/commit-analyzer','@semantic-release/release-notes-generator']
   })
-
-  console.dir({result}, { depth: null })
   
   if (!result) throw new Error('No release happened')
   core.setOutput('version', result.nextRelease.version)
