@@ -12,8 +12,16 @@ inputs:
 outputs:
   version:
     description: "Next release version"
-  changelog:
-    description: "Release changelog"
+  notes:
+    description: "Release notes"
+  type:
+    description: "Release type (minor | major | patch)"
+  tag:
+    description: "Tag name"
+  channel:
+    description: "Channel name"
+  name:
+    description: "Release name"
 runs:
   using: 'node12'
-  main: 'index.js'
+  main: 'dist/index.js'

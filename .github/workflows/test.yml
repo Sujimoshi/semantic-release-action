@@ -12,4 +12,10 @@ jobs:
         id: release
       # Use the output from the `hello` step
       - name: Get the output
-        run: echo "Next version is ${{ steps.release.outputs.version }}"
+        run: |
+          echo "Version: ${{ steps.release.outputs.version }}"
+          echo "Tag: ${{ steps.release.outputs.tag }}"
+          echo "Name: ${{ steps.release.outputs.name }}"
+          echo "Notes: ${{ steps.release.outputs.notes }}"
+          echo "Type: ${{ steps.release.outputs.type }}"
+          echo "Channel: ${{ steps.release.outputs.channel }}"

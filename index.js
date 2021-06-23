@@ -1,5 +1,4 @@
 const core = require('@actions/core');
-const sematicRelease = require('semantic-release')
 const github = require('@actions/github');
 
 (async function() {
@@ -11,9 +10,14 @@ const github = require('@actions/github');
     plugins: ['@semantic-release/commit-analyzer','@semantic-release/release-notes-generator']
   })
 
-  console.log({result})
+  console.dir({result}, { depth: null })
   
   if (!result) throw new Error('No release happened')
   core.setOutput('version', result.nextRelease.version)
+  core.setOutput('notes', result.nextRelease.notes)
+  core.setOutput('type', result.nextRelease.type)
+  core.setOutput('tag', result.nextRelease.tag)
+  core.setOutput('channel', result.nextRelease.channel)
+  core.setOutput('name', result.nextRelease.name)
 
 })().catch(err => core.setFailed(err.message))
