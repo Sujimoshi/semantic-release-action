@@ -1,20 +1,16 @@
 name: 'Semantic Release'
 description: 'Evaluate next release version'
 inputs:
-  release-branches:
-    description: 'Set of release branches separated by comma'
+  branches:
+    description: 'Set of release branches separated by newline'
     required: false
     default: |
       +([0-9])?(.{+([0-9]),x}).x
       master
       next
       next-major
-  prerelease-branches:
-    description: 'Set of prerelease branches separated by comma'
-    required: false
-    default: |
-      alpha
-      beta
+      { "name": "alpha", "prerelease": true }
+      { "name": "beta", "prerelease": true }
   plugins:
     description: Set of plugins to use
     required: false

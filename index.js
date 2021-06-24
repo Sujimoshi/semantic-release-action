@@ -5,13 +5,17 @@ const ca = require('@semantic-release/commit-analyzer')
 const rng = require('@semantic-release/release-notes-generator')
 
 ;(async function() {
-  const releaseBranches = core.getInput('release-branches').split('\n');
-  const prereleaseBranches = core.getInput('prerelease-branches').split('\n').map(name => ({ name, prerelease: name.split(':')[1] || true }));
-  const plugins = core.getInput('plugins').split('\n');
+  const releaseBranches = core.getInput('branches').split('\n');
+  const prereleaseBranches = core.getInput('prerelease-branches').split('\n').map(name => {
+    const [ name, prerelease = true ] = name.split(':')
+    return { name, prerelease } 
+  });
 
   const config = {
-    branches: [...releaseBranches, ...prereleaseBranches],
-    plugins
+    branches: core.getInput('plugins').split('\n').map(branch => {
+      return branch.startsWith('{ ') ? JSON.parse(branch) : branch
+    }),
+    plugins: core.getInput('plugins').split('\n')
   }
 
   console.log('Configuration', config)
