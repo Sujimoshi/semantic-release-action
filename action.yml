@@ -1,11 +1,11 @@
 name: 'Semantic Release'
 description: 'Evaluate next release version'
 inputs:
-  release-branches:  # id of input
+  release-branches:
     description: 'Set of release branches separated by comma'
     required: false
     default: '+([0-9])?(.{+([0-9]),x}).x | master | next | next-major'
-  prerelease-branches:  # id of input
+  prerelease-branches:
     description: 'Set of prerelease branches separated by comma'
     required: false
     default: 'alpha | beta'
