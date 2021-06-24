@@ -4,11 +4,17 @@ inputs:
   release-branches:
     description: 'Set of release branches separated by comma'
     required: false
-    default: '+([0-9])?(.{+([0-9]),x}).x | master | next | next-major'
+    default: |
+      +([0-9])?(.{+([0-9]),x}).x
+      master
+      next
+      next-major
   prerelease-branches:
     description: 'Set of prerelease branches separated by comma'
     required: false
-    default: 'alpha | beta'
+    default: |
+      alpha
+      beta
 outputs:
   version:
     description: "Next release version"
