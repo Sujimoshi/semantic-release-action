@@ -5,12 +5,15 @@ const ca = require('@semantic-release/commit-analyzer')
 const rng = require('@semantic-release/release-notes-generator')
 
 ;(async function() {
-  const releaseBranches = core.getInput('release-branches').split(',');
-  const prereleaseBranches = core.getInput('prerelease-branches').split(',').map(name => ({ name, prerelease: true }));
+  const releaseBranches = core.getInput('release-branches').split(' | ');
+  const prereleaseBranches = core.getInput('prerelease-branches').split(' | ').map(name => ({ name, prerelease: true }));
 
   const result = await sr({
     branches: [...releaseBranches, ...prereleaseBranches],
-    plugins: ['@semantic-release/commit-analyzer','@semantic-release/release-notes-generator']
+    plugins: [
+      '@semantic-release/commit-analyzer',
+      '@semantic-release/release-notes-generator'
+    ]
   })
   
   if (!result) throw new Error('No release happened')
