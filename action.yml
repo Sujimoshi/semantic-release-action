@@ -15,6 +15,12 @@ inputs:
     default: |
       alpha
       beta
+  plugins:
+    description: Set of plugins to use
+    required: false
+    default: |
+      @semantic-release/commit-analyzer
+      @semantic-release/release-notes-generator
 outputs:
   version:
     description: "Next release version"
