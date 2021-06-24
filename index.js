@@ -8,6 +8,11 @@ const rng = require('@semantic-release/release-notes-generator')
   const releaseBranches = core.getInput('release-branches').split('\n');
   const prereleaseBranches = core.getInput('prerelease-branches').split('\n').map(name => ({ name, prerelease: name.split(':')[1] || true }));
 
+  console.log({
+    releaseBranches,
+    prereleaseBranches
+  })
+
   const result = await sr({
     branches: [...releaseBranches, ...prereleaseBranches],
     plugins: [
