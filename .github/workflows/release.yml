@@ -12,7 +12,7 @@ jobs:
       - name: Semantic Release
         uses: ./
         id: release
-      # Use the output from the `hello` step
+
       - name: Get the output
         run: |
           echo "Version: ${{ steps.release.outputs.version }}"
