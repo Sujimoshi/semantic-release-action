@@ -6,7 +6,7 @@ const rng = require('@semantic-release/release-notes-generator')
 
 ;(async function() {
   const config = {
-    branches: core.getInput('plugins').split('\n').map(branch => {
+    branches: core.getInput('branches').split('\n').map(branch => {
       return branch.startsWith('{ ') ? JSON.parse(branch) : branch
     }),
     plugins: core.getInput('plugins').split('\n')
