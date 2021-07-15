@@ -15,7 +15,7 @@ jobs:
         with:
           branches: |
             master
-            { "name": "feat/[A-Z]+-[0-9]+/*", "prerelease": "<%= name.split('/')[1] %>", "channel": "<%= name %>" }
+            { "name": "feat/[A-Z]+-[0-9]+/*", "prerelease": "<%= name %>", "channel": "<%= name.split('/')[1] %>" }
 
       - name: Get the output
         run: |
