@@ -19,7 +19,7 @@ const rng = require('@semantic-release/release-notes-generator')
 
   if (!result) {
     const message = 'No release happened'
-    if (noFailOnNothingToRelease) {
+    if (config.noFailOnNothingToRelease) {
       console.log(message)
     } else {
       throw new Error(message)
