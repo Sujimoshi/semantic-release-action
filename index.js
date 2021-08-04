@@ -16,7 +16,7 @@ const rng = require('@semantic-release/release-notes-generator')
   console.log('Configuration', config)
   
   const result = await sr(config)
-  
+
   if (!result) {
     const message = 'No release happened'
     if (noFailOnNothingToRelease) {
