@@ -21,10 +21,11 @@ const rng = require('@semantic-release/release-notes-generator')
     const message = 'No release happened'
     if (config.noFailOnNothingToRelease) {
       console.log(message)
-    } else {
-      throw new Error(message)
+      return
     }
+    throw new Error(message)
   }
+
   core.setOutput('version', result.nextRelease.version)
   core.setOutput('notes', result.nextRelease.notes)
   core.setOutput('type', result.nextRelease.type)
