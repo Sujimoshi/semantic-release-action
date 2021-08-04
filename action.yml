@@ -17,6 +17,10 @@ inputs:
     default: |
       @semantic-release/commit-analyzer
       @semantic-release/release-notes-generator
+  noFailOnNothingToRelease:
+    description: 'Do not fail if nothing to release'
+    required: false
+    default: 'false'
 outputs:
   version:
     description: "Next release version"
