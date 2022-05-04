@@ -10,7 +10,8 @@ const rng = require('@semantic-release/release-notes-generator')
       return branch.startsWith('{ ') ? JSON.parse(branch) : branch
     }),
     plugins: core.getInput('plugins').split('\n'),
-    noFailOnNothingToRelease: core.getInput('noFailOnNothingToRelease').toLowerCase().trim() === 'true'
+    noFailOnNothingToRelease: core.getInput('noFailOnNothingToRelease').toLowerCase().trim() === 'true',
+    tagFormat: core.getInput('tagFormat'),
   }
 
   console.log('Configuration', config)

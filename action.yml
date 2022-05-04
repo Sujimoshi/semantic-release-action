@@ -21,6 +21,10 @@ inputs:
     description: 'Do not fail if nothing to release'
     required: false
     default: 'false'
+  tagFormat:
+    description: The Git tag format used by semantic-release to identify releases
+    required: false
+    default: 'v${version}'
 outputs:
   version:
     description: "Next release version"
