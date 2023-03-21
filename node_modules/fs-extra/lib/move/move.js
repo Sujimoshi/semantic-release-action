@@ -14,6 +14,8 @@ function move (src, dest, opts, cb) {
     opts = {}
   }
 
+  opts = opts || {}
+
   const overwrite = opts.overwrite || opts.clobber || false
 
   stat.checkPaths(src, dest, 'move', opts, (err, stats) => {
@@ -62,7 +64,8 @@ function rename (src, dest, overwrite, cb) {
 function moveAcrossDevice (src, dest, overwrite, cb) {
   const opts = {
     overwrite,
-    errorOnExist: true
+    errorOnExist: true,
+    preserveTimestamps: true
   }
   copy(src, dest, opts, err => {
     if (err) return cb(err)
