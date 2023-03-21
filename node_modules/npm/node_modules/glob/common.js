@@ -10,9 +10,10 @@ function ownProp (obj, field) {
   return Object.prototype.hasOwnProperty.call(obj, field)
 }
 
+var fs = require("fs")
 var path = require("path")
 var minimatch = require("minimatch")
-var isAbsolute = require("path-is-absolute")
+var isAbsolute = require("path").isAbsolute
 var Minimatch = minimatch.Minimatch
 
 function alphasort (a, b) {
@@ -75,6 +76,7 @@ function setopts (self, pattern, options) {
   self.stat = !!options.stat
   self.noprocess = !!options.noprocess
   self.absolute = !!options.absolute
+  self.fs = options.fs || fs
 
   self.maxLength = options.maxLength || Infinity
   self.cache = options.cache || Object.create(null)
@@ -86,7 +88,7 @@ function setopts (self, pattern, options) {
   self.changedCwd = false
   var cwd = process.cwd()
   if (!ownProp(options, "cwd"))
-    self.cwd = cwd
+    self.cwd = path.resolve(cwd)
   else {
     self.cwd = path.resolve(options.cwd)
     self.changedCwd = self.cwd !== cwd
@@ -94,20 +96,24 @@ function setopts (self, pattern, options) {
 
   self.root = options.root || path.resolve(self.cwd, "/")
   self.root = path.resolve(self.root)
-  if (process.platform === "win32")
-    self.root = self.root.replace(/\\/g, "/")
 
   // TODO: is an absolute `cwd` supposed to be resolved against `root`?
   // e.g. { cwd: '/test', root: __dirname } === path.join(__dirname, '/test')
   self.cwdAbs = isAbsolute(self.cwd) ? self.cwd : makeAbs(self, self.cwd)
-  if (process.platform === "win32")
-    self.cwdAbs = self.cwdAbs.replace(/\\/g, "/")
   self.nomount = !!options.nomount
+
+  if (process.platform === "win32") {
+    self.root = self.root.replace(/\\/g, "/")
+    self.cwd = self.cwd.replace(/\\/g, "/")
+    self.cwdAbs = self.cwdAbs.replace(/\\/g, "/")
+  }
 
   // disable comments and negation in Minimatch.
   // Note that they are not supported in Glob itself anyway.
   options.nonegate = true
   options.nocomment = true
+  // always treat \ in patterns as escapes, not path separators
+  options.allowWindowsEscape = true
 
   self.minimatch = new Minimatch(pattern, options)
   self.options = self.minimatch.options
