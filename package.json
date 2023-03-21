@@ -3,6 +3,7 @@
   "version": "0.0.0-auto",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "build": "ncc build index.js --license licenses.txt"
   },

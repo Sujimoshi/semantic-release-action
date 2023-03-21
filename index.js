@@ -1,8 +1,8 @@
-const core = require('@actions/core');
-const github = require('@actions/github');
-const sr = require('semantic-release')
-const ca = require('@semantic-release/commit-analyzer')
-const rng = require('@semantic-release/release-notes-generator')
+import core from '@actions/core'
+import github from '@actions/github'
+import sr from 'semantic-release'
+import ca from '@semantic-release/commit-analyzer'
+import rng from '@semantic-release/release-notes-generator'
 
 ;(async function() {
   const config = {
