@@ -35,5 +35,5 @@ outputs:
   name:
     description: "Release name"
 runs:
-  using: 'node18'
+  using: 'node16'
   main: 'index.js'
