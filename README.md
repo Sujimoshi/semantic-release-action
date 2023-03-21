@@ -6,7 +6,7 @@ Evaluate the next release version for your GitHub repositories with this GitHub 
 
 This GitHub Action automatically evaluates the next release version for your repository based on semantic versioning and using your commit messages and configured release branches. 
 
-IMPORTANT:
+### IMPORTANT:
 > This action does not create any releases or tags. Instead, it provides output variables with information about the evaluated release, such as the version, type, tag, channel, name and changelog. So you need to create a tag by yourself in order to evaluate next version. See [Example](.github/workflows/release.yml)
 
 ## Inputs
