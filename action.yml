@@ -1,5 +1,5 @@
-name: 'Semantic Release'
-description: 'Evaluate next release version'
+name: Semantic Release Version Evaluator
+description: Evaluate next release version with semantic-release
 inputs:
   branches:
     description: 'Set of release branches separated by newline'
