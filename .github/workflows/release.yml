@@ -12,8 +12,6 @@ jobs:
       - name: Semantic Release
         uses: ./
         id: release
-        with:
-          tagFormat: 'action-v${version}'
 
       - name: Get the output
         run: |
@@ -29,7 +27,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: action-${{ steps.release.outputs.tag }}
+          tag_name: ${{ steps.release.outputs.tag }}
           release_name: ${{ steps.release.outputs.name }}
           body: ${{ steps.release.outputs.notes }}
           draft: false
