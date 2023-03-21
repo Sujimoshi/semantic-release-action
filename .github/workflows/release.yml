@@ -22,7 +22,6 @@ jobs:
           echo "Type: ${{ steps.release.outputs.type }}"
           echo "Channel: ${{ steps.release.outputs.channel }}"
 
-    
       - name: Publish Github Release
         uses: actions/create-release@v1
         env:

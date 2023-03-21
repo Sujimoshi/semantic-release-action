@@ -10,7 +10,6 @@ const rng = require('@semantic-release/release-notes-generator')
       return branch.startsWith('{ ') ? JSON.parse(branch) : branch
     }),
     plugins: core.getInput('plugins').split('\n'),
-    noFailOnNothingToRelease: core.getInput('noFailOnNothingToRelease').toLowerCase().trim() === 'true',
     tagFormat: core.getInput('tagFormat'),
   }
 
@@ -18,14 +17,7 @@ const rng = require('@semantic-release/release-notes-generator')
 
   const result = await sr(config)
 
-  if (!result) {
-    const message = 'No release happened'
-    if (config.noFailOnNothingToRelease) {
-      console.log(message)
-      return
-    }
-    throw new Error(message)
-  }
+  if (!result) throw new Error('No release happened')
 
   core.setOutput('version', result.nextRelease.version)
   core.setOutput('notes', result.nextRelease.notes)
